@@ -13,16 +13,19 @@ class ExperienceCandidate extends StatefulWidget {
 
 class _ExperienceCandidateState extends State<ExperienceCandidate> {
   _buildExperienceItem(LinkedHashMap experience) {
-    return ListTile(
-      title: Text(
-        experience['company'],
-        style: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.w600,
+    return Padding(
+      padding: EdgeInsets.only(left: 2.0),
+      child: ListTile(
+        title: Text(
+          experience['company'],
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-      ),
-      subtitle: Text(
-        experience['job'] + ' | ' + experience['duration'],
+        subtitle: Text(
+          experience['job'] + ' | ' + experience['duration'],
+        ),
       ),
     );
   }
