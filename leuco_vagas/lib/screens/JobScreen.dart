@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+
+import 'package:leuco_vagas/screens/CandidateScreen.dart';
 
 class JobScreen extends StatefulWidget {
   final DocumentSnapshot job;
@@ -126,7 +128,13 @@ class _JobScreenState extends State<JobScreen> {
                                 DocumentSnapshot candidate = snapshot.data[i];
 
                                 return GestureDetector(
-                                  onTap: () => {},
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          CandidateScreen(candidate),
+                                    ),
+                                  ),
                                   child: Container(
                                     padding: EdgeInsets.all(20.0),
                                     decoration: BoxDecoration(
