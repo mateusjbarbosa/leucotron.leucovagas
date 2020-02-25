@@ -21,13 +21,17 @@ class _AboutCandidateState extends State<AboutCandidate> {
             radius: 15.0,
             backgroundColor: Theme.of(context).primaryColor,
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 5.0),
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 5.0, right: 18.0),
+              child: Text(
+                text,
+                overflow: TextOverflow.fade,
+                softWrap: false,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           )
