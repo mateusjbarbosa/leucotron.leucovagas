@@ -25,7 +25,10 @@ class _AboutCandidateState extends State<AboutCandidate> {
             padding: EdgeInsets.only(left: 5.0),
             child: Text(
               text,
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           )
         ],

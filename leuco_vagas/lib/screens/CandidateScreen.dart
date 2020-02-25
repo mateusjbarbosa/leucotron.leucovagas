@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:leuco_vagas/widgets/AboutCandidate.dart';
+import 'package:leuco_vagas/widgets/ExperienceCandidate.dart';
 
 class CandidateScreen extends StatefulWidget {
   final DocumentSnapshot candidate;
@@ -27,8 +29,11 @@ class _CandidateScreenState extends State<CandidateScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
       ),
-      body: Container(
-        child: AboutCandidate(candidate['about']),
+      body: Column(
+        children: <Widget>[
+          AboutCandidate(candidate['about']),
+          ExperienceCandidate(candidate['experience']),
+        ],
       ),
     );
   }
