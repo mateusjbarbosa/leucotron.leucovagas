@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'dart:collection';
-
 class SkillsCandidate extends StatefulWidget {
   final List candidate;
 
