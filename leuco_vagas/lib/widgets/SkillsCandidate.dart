@@ -59,6 +59,7 @@ class _SkillsCandidateState extends State<SkillsCandidate> {
         ),
         ListView.builder(
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           itemCount: candidate.length,
           itemBuilder: (_, i) {
             return _buildSkillItem(candidate[i]);

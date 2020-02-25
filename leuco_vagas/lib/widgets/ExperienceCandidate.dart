@@ -52,6 +52,7 @@ class _ExperienceCandidateState extends State<ExperienceCandidate> {
           ],
         ),
         ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: candidate.length,
           itemBuilder: (_, i) {
