@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:leuco_vagas/screens/UpdateCandidateScreen.dart';
 
 import 'package:leuco_vagas/widgets/AboutCandidate.dart';
 import 'package:leuco_vagas/widgets/ExperienceCandidate.dart';
@@ -23,7 +24,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.candidate.data['name'].toUpperCase(),
+          candidate['name'].toUpperCase(),
           style: TextStyle(color: Theme.of(context).primaryColor),
         ),
         elevation: 0.0,
@@ -43,6 +44,17 @@ class _CandidateScreenState extends State<CandidateScreen> {
             ],
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(Icons.edit),
+        elevation: 0.0,
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => UpdateCandidateScreen(widget.candidate),
+          ),
+        ),
       ),
     );
   }
