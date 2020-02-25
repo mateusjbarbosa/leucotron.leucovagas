@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:leuco_vagas/widgets/AboutCandidate.dart';
 import 'package:leuco_vagas/widgets/ExperienceCandidate.dart';
+import 'package:leuco_vagas/widgets/SkillsCandidate.dart';
 
 class CandidateScreen extends StatefulWidget {
   final DocumentSnapshot candidate;
@@ -29,10 +30,18 @@ class _CandidateScreenState extends State<CandidateScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
-          AboutCandidate(candidate['about']),
-          ExperienceCandidate(candidate['experience']),
+          Column(
+            children: <Widget>[
+              AboutCandidate(candidate['about']),
+              ExperienceCandidate(candidate['experience']),
+              SkillsCandidate(candidate['skills']),
+              SizedBox(
+                height: 16.0,
+              )
+            ],
+          ),
         ],
       ),
     );
