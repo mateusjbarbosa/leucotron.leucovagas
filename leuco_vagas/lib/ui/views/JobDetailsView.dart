@@ -6,6 +6,7 @@ import 'package:leuco_vagas/core/models/Job.dart';
 import 'package:leuco_vagas/core/services/api.dart';
 import 'package:leuco_vagas/ui/views/CandidateDetailsView.dart';
 import 'package:leuco_vagas/ui/views/CreateCandidateView.dart';
+import 'package:leuco_vagas/ui/views/UpdateCandidateView.dart';
 
 class JobDetailsView extends StatefulWidget {
   final Job job;
@@ -126,25 +127,77 @@ class _JobDetailsViewState extends State<JobDetailsView> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: _candidates.length,
-                    itemBuilder: (context, i) => ListTile(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              CandidateDetailsView(_candidates[i]),
-                        ),
+                    itemBuilder: (context, i) => Dismissible(
+                      key: Key(DateTime.now().toString()),
+                      direction: DismissDirection.horizontal,
+                      onDismissed: (d) {
+                        if (d == DismissDirection.startToEnd) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      UpdateCandidateView(_candidates[i])));
+                        } else {
+                          Candidate candidateTemp = _candidates[i];
+
+                          _api.deleteCandidate(_candidates[i].id);
+
+                          final snackbar = SnackBar(
+                              content: Text("Candidato excluído com sucesso!"),
+                              action: SnackBarAction(
+                                  label: "Desfazer",
+                                  textColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      _api.reAddCandidate(candidateTemp);
+                                    });
+                                  }),
+                              backgroundColor: Theme.of(context).primaryColor,
+                              elevation: 0.0,
+                              duration: Duration(seconds: 10));
+
+                          Scaffold.of(context).showSnackBar(snackbar);
+                        }
+                      },
+                      background: Container(
+                        color: Theme.of(context).primaryColor,
+                        padding: EdgeInsets.only(left: 18),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Icon(Icons.edit, color: Colors.white)
+                            ]),
                       ),
-                      title: Text(
-                        _candidates[i].name,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      secondaryBackground: Container(
+                        color: Theme.of(context).primaryColor,
+                        padding: EdgeInsets.only(right: 18),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Icon(Icons.delete, color: Colors.white)
+                            ]),
                       ),
-                      subtitle: Text(
-                        _candidates[i].course,
-                        style: TextStyle(
-                          fontSize: 12.0,
+                      child: ListTile(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CandidateDetailsView(_candidates[i]),
+                          ),
+                        ),
+                        title: Text(
+                          _candidates[i].name,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(
+                          _candidates[i].course,
+                          style: TextStyle(
+                            fontSize: 12.0,
+                          ),
                         ),
                       ),
                     ),

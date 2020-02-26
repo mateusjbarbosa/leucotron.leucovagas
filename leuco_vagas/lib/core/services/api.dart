@@ -67,7 +67,17 @@ class Api {
     await _db.collection('jobs').document(id).delete();
   }
 
+  void deleteCandidate(String id) async {
+    await _db.collection('candidates').document(id).delete();
+  }
+
   void reAddJob(Job job) async {
     await _db.collection('jobs').document(job.id).setData(job.toJson());
+  }
+
+  void reAddCandidate(Candidate candidate) async {
+    await _db.collection('candidates').document(candidate.id).setData(
+          candidate.toJson(),
+        );
   }
 }
