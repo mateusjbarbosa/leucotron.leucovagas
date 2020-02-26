@@ -18,13 +18,23 @@ class Api {
     await _db.collection('jobs').add(job.toJson());
   }
 
-  void createCandidate(String name, String age, String course, String college,
-      List<dynamic> experience, List<dynamic> skills) async {
+  void createCandidate(
+    String name,
+    String age,
+    String course,
+    String college,
+    List<dynamic> emails,
+    List<dynamic> cellphones,
+    List<dynamic> experience,
+    List<dynamic> skills,
+  ) async {
     Candidate candidate = Candidate(
       name: name,
       age: age,
       course: course,
       college: college,
+      emails: emails,
+      cellphones: cellphones,
       experience: experience,
       skills: skills,
     );

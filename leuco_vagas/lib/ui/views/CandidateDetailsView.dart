@@ -95,6 +95,62 @@ class _CandidateDetailsViewState extends State<CandidateDetailsView> {
                 [_candidate.college, Icons.school],
               ],
             ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: _candidate.emails.length,
+              itemBuilder: (_, i) {
+                return Padding(
+                  padding: EdgeInsets.only(left: 18.0, top: 10.0),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.email,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.0),
+                        child: Text(
+                          _candidate.emails[i],
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: _candidate.cellphones.length,
+              itemBuilder: (_, i) {
+                return Padding(
+                  padding: EdgeInsets.only(left: 18.0, top: 10.0),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.call,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5.0),
+                        child: Text(
+                          _candidate.cellphones[i],
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
             Padding(
               padding: EdgeInsets.only(left: 18.0, top: 15.0),
               child: Row(
