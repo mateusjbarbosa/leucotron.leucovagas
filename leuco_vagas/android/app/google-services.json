@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "248351281831",
+    "firebase_url": "https://leuco-vagas-e6e41.firebaseio.com",
+    "project_id": "leuco-vagas-e6e41",
+    "storage_bucket": "leuco-vagas-e6e41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248351281831:android:03b59447d1ccde7c998182",
+        "android_client_info": {
+          "package_name": "com.example.leuco_vagas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248351281831-63hh6ftfgo8phpaa6kk1kqrccjk81o10.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFlST6xarVAmf-2_LtrVH1IeKCfMyKU-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248351281831-63hh6ftfgo8phpaa6kk1kqrccjk81o10.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
