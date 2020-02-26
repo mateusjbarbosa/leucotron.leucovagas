@@ -84,6 +84,7 @@ class _UpdateJobViewState extends State<UpdateJobView> {
       floatingActionButton: FloatingActionButton(
         onPressed: _updateJob,
         child: Icon(Icons.save),
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0.0,
       ),
     );

@@ -6,8 +6,12 @@ import 'package:leuco_vagas/core/models/Job.dart';
 class Api {
   Firestore _db = Firestore.instance;
 
-  void createJob(String name, String role, List<String> requirements,
-      List<String> skills) async {
+  void createJob(
+    String name,
+    String role,
+    List<String> requirements,
+    List<String> skills,
+  ) async {
     Job job = Job(
       name: name,
       role: role,
@@ -61,6 +65,35 @@ class Api {
     );
 
     await _db.collection('jobs').document(job.id).updateData(job.toJson());
+  }
+
+  void updateCandidate(
+    String id,
+    String name,
+    String age,
+    String course,
+    String college,
+    List<dynamic> emails,
+    List<dynamic> cellphones,
+    List<dynamic> experience,
+    List<dynamic> skills,
+  ) async {
+    Candidate candidate = Candidate(
+      id: id,
+      name: name,
+      age: age,
+      course: course,
+      college: college,
+      emails: emails,
+      cellphones: cellphones,
+      experience: experience,
+      skills: skills,
+    );
+
+    await _db
+        .collection('candidates')
+        .document(candidate.id)
+        .updateData(candidate.toJson());
   }
 
   void deleteJob(String id) async {
