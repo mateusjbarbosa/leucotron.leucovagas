@@ -8,11 +8,11 @@ class Job {
   Job({this.id, this.name, this.role, this.requirements, this.skills});
 
   Job.fromMap(Map m, String id) {
-    id = id ?? '';
-    name = m['name'] ?? '';
-    role = m['role'] ?? '';
-    requirements = m['requirements'] ?? '';
-    skills = m['skills'] ?? '';
+    this.id = id ?? '';
+    this.name = m['name'] ?? '';
+    this.role = m['role'] ?? '';
+    this.requirements = m['requirements'] ?? '';
+    this.skills = m['skills'] ?? '';
   }
 
   toJson() {

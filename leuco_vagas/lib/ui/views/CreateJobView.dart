@@ -42,11 +42,6 @@ class _CreateJobViewState extends State<CreateJobView> {
     Navigator.pop(context);
   }
 
-  // void _deleteJob() async {
-  //   await _db.collection('jobs').document(_job.id).delete();
-  //   Navigator.pop(context);
-  // }
-
   _buildTextField(String field, TextEditingController _controller) {
     return Column(
       children: <Widget>[
