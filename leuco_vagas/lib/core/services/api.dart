@@ -54,8 +54,13 @@ class Api {
     return _db.collection('candidates').snapshots();
   }
 
-  void updateJob(String id, String name, String role, List<String> requirements,
-      List<String> skills) async {
+  void updateJob(
+    String id,
+    String name,
+    String role,
+    List<String> requirements,
+    List<String> skills,
+  ) async {
     Job job = Job(
       id: id,
       name: name,
