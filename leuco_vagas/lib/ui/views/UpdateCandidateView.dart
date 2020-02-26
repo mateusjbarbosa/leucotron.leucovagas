@@ -55,6 +55,7 @@ class _UpdateCandidateViewState extends State<UpdateCandidateView> {
   void _updateCandidate() {
     _api.updateCandidate(
       _candidate.id,
+      _candidate.jobId,
       _nameController.text,
       _ageController.text,
       _courseController.text,

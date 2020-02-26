@@ -216,8 +216,10 @@ class _JobDetailsViewState extends State<JobDetailsView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CreateCandidateView())),
+        onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CreateCandidateView(_job.id))),
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 0.0,

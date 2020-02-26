@@ -23,6 +23,7 @@ class Api {
   }
 
   void createCandidate(
+    String jobId,
     String name,
     String age,
     String course,
@@ -33,6 +34,7 @@ class Api {
     List<dynamic> skills,
   ) async {
     Candidate candidate = Candidate(
+      jobId: jobId,
       name: name,
       age: age,
       course: course,
@@ -74,6 +76,7 @@ class Api {
 
   void updateCandidate(
     String id,
+    String jobId,
     String name,
     String age,
     String course,
@@ -85,6 +88,7 @@ class Api {
   ) async {
     Candidate candidate = Candidate(
       id: id,
+      jobId: jobId,
       name: name,
       age: age,
       course: course,

@@ -1,5 +1,6 @@
 class Candidate {
   String id;
+  String jobId;
   String name;
   String age;
   String course;
@@ -11,6 +12,7 @@ class Candidate {
 
   Candidate({
     this.id,
+    this.jobId,
     this.name,
     this.age,
     this.course,
@@ -23,6 +25,7 @@ class Candidate {
 
   Candidate.fromMap(Map m, String id) {
     this.id = id ?? '';
+    this.jobId = m['jobId'] ?? '';
     this.name = m['name'] ?? '';
     this.age = m['age'] ?? '';
     this.course = m['course'] ?? '';
@@ -35,6 +38,7 @@ class Candidate {
 
   toJson() {
     return {
+      "jobId": jobId,
       "name": name,
       "age": age,
       "course": course,

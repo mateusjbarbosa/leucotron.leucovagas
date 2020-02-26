@@ -5,12 +5,18 @@ import 'package:leuco_vagas/core/services/api.dart';
 import 'package:leuco_vagas/ui/shared/BuildTextField.dart';
 
 class CreateCandidateView extends StatefulWidget {
+  final String jobId;
+
+  CreateCandidateView(this.jobId);
+
   @override
   _CreateCandidateViewState createState() => _CreateCandidateViewState();
 }
 
 class _CreateCandidateViewState extends State<CreateCandidateView> {
   Api _api = Api();
+
+  String _jobId;
 
   List<dynamic> _experiences = List<dynamic>();
   List<dynamic> _emails = List<String>();
@@ -40,6 +46,7 @@ class _CreateCandidateViewState extends State<CreateCandidateView> {
 
   void _createCandidate() {
     _api.createCandidate(
+      _jobId,
       _nameController.text,
       _ageController.text,
       _courseController.text,
@@ -256,6 +263,12 @@ class _CreateCandidateViewState extends State<CreateCandidateView> {
         );
       },
     );
+  }
+
+  @override
+  void initState() {
+    _jobId = widget.jobId;
+    super.initState();
   }
 
   @override
