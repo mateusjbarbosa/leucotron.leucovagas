@@ -1,7 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import 'package:leuco_vagas/core/models/Job.dart';
+import 'package:leuco_vagas/core/services/api.dart';
+
 import 'package:leuco_vagas/ui/views/CreateJobView.dart';
+import 'package:leuco_vagas/ui/views/UpdateJobView.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -9,21 +12,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  Firestore _db = Firestore.instance;
+  Api _api = Api();
 
   List<dynamic> _jobs;
-
-  Stream<QuerySnapshot> _streamJobs() {
-    return _db.collection('jobs').snapshots();
-  }
-
-  void _deleteJob(String id) async {
-    await _db.collection('jobs').document(id).delete();
-  }
-
-  void _reAddJob(Job job) async {
-    await _db.collection('jobs').document(job.id).setData(job.toJson());
-  }
 
   @override
   void initState() {
@@ -45,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: Container(
         child: StreamBuilder(
-          stream: _streamJobs(),
+          stream: _api.streamJobs(),
           builder: (_, snapshot) {
             if (snapshot.hasData) {
               _jobs = snapshot.data.documents
@@ -59,10 +50,14 @@ class _HomeViewState extends State<HomeView> {
                   direction: DismissDirection.horizontal,
                   onDismissed: (d) {
                     if (d == DismissDirection.startToEnd) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateJobView(_jobs[i])));
                     } else {
                       Job jobTemp = _jobs[i];
 
-                      _deleteJob(_jobs[i].id);
+                      _api.deleteJob(_jobs[i].id);
 
                       final snackbar = SnackBar(
                           content: Text("Vaga excluída com sucesso!"),
@@ -72,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
                                   Theme.of(context).scaffoldBackgroundColor,
                               onPressed: () {
                                 setState(() {
-                                  _reAddJob(jobTemp);
+                                  _api.reAddJob(jobTemp);
                                 });
                               }),
                           backgroundColor: Theme.of(context).primaryColor,

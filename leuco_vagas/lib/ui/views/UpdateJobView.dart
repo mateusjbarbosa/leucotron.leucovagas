@@ -2,38 +2,55 @@ import 'package:flutter/material.dart';
 
 import 'package:leuco_vagas/core/services/api.dart';
 
+import 'package:leuco_vagas/core/models/Job.dart';
+
 import 'package:leuco_vagas/ui/shared/BuildTextField.dart';
 
-class CreateJobView extends StatefulWidget {
+class UpdateJobView extends StatefulWidget {
+  final Job job;
+
+  UpdateJobView(this.job);
+
   @override
-  _CreateJobViewState createState() => _CreateJobViewState();
+  _UpdateJobViewState createState() => _UpdateJobViewState();
 }
 
-class _CreateJobViewState extends State<CreateJobView> {
+class _UpdateJobViewState extends State<UpdateJobView> {
   Api _api = Api();
+
+  Job _job = Job();
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _roleController = TextEditingController();
   TextEditingController _requirementsController = TextEditingController();
   TextEditingController _skillsController = TextEditingController();
 
-  void _clearControllers() {
-    _nameController.clear();
-    _roleController.clear();
-    _requirementsController.clear();
-    _skillsController.clear();
+  void initJob(Job job) {
+    _job = job;
+
+    _nameController.text = _job.name;
+    _roleController.text = _job.role;
+    _requirementsController.text = _job.requirements.join(', ');
+    _skillsController.text = _job.skills.join(', ');
   }
 
-  void _createJob() {
-    _api.createJob(
+  void _updateJob() {
+    _api.updateJob(
+      _job.id,
       _nameController.text,
       _roleController.text,
       _requirementsController.text.split(', '),
       _skillsController.text.split(', '),
     );
 
-    _clearControllers();
     Navigator.pop(context);
+  }
+
+  @override
+  void initState() {
+    initJob(widget.job);
+
+    super.initState();
   }
 
   @override
@@ -41,7 +58,7 @@ class _CreateJobViewState extends State<CreateJobView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Criar vaga',
+          'Editar vaga',
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -65,7 +82,7 @@ class _CreateJobViewState extends State<CreateJobView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _createJob,
+        onPressed: _updateJob,
         child: Icon(Icons.save),
         elevation: 0.0,
       ),
