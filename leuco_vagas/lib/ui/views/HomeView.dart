@@ -4,6 +4,7 @@ import 'package:leuco_vagas/core/models/Job.dart';
 import 'package:leuco_vagas/core/services/api.dart';
 
 import 'package:leuco_vagas/ui/views/CreateJobView.dart';
+import 'package:leuco_vagas/ui/views/JobDetailsView.dart';
 import 'package:leuco_vagas/ui/views/UpdateJobView.dart';
 
 class HomeView extends StatefulWidget {
@@ -96,6 +97,10 @@ class _HomeViewState extends State<HomeView> {
                         ]),
                   ),
                   child: ListTile(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => JobDetailsView(_jobs[i]))),
                     title: Text(
                       _jobs[i].name,
                       style: TextStyle(

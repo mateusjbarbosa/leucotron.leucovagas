@@ -66,6 +66,7 @@ class _CreateJobViewState extends State<CreateJobView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _createJob,
+        backgroundColor: Theme.of(context).primaryColor,
         child: Icon(Icons.save),
         elevation: 0.0,
       ),
