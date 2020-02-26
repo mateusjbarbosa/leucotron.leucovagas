@@ -4,6 +4,7 @@ import 'package:leuco_vagas/core/models/Candidate.dart';
 import 'package:leuco_vagas/core/models/Job.dart';
 
 import 'package:leuco_vagas/core/services/api.dart';
+import 'package:leuco_vagas/ui/views/CandidateDetailsView.dart';
 import 'package:leuco_vagas/ui/views/CreateCandidateView.dart';
 
 class JobDetailsView extends StatefulWidget {
@@ -126,6 +127,13 @@ class _JobDetailsViewState extends State<JobDetailsView> {
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: _candidates.length,
                     itemBuilder: (context, i) => ListTile(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CandidateDetailsView(_candidates[i]),
+                        ),
+                      ),
                       title: Text(
                         _candidates[i].name,
                         style: TextStyle(
@@ -148,6 +156,9 @@ class _JobDetailsViewState extends State<JobDetailsView> {
                 }
               },
             ),
+            SizedBox(
+              height: 20.0,
+            )
           ],
         ),
       ),
