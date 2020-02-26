@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:leuco_vagas/screens/HomeScreen.dart';
+import 'package:leuco_vagas/ui/views/HomeView.dart';
 
 void main() {
   runApp(
@@ -12,7 +12,7 @@ void main() {
         scaffoldBackgroundColor: Color(0xFFFAFAFA),
       ),
       title: 'Leuco Vagas',
-      home: HomeScreen(),
+      home: HomeView(),
     ),
   );
 }

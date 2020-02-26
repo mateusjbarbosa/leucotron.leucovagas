@@ -28,10 +28,6 @@ dependencies:
   firebase_core: ^0.4.4
   cloud_firestore: ^0.13.3
 
-  # auto_size_text
-  auto_size_text: ^2.1.0
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
