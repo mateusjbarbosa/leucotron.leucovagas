@@ -52,8 +52,11 @@ class Api {
     return _db.collection('jobs').snapshots();
   }
 
-  Stream<QuerySnapshot> streamCandidates() {
-    return _db.collection('candidates').snapshots();
+  Stream<QuerySnapshot> streamCandidates(String job) {
+    return _db
+        .collection('candidates')
+        .where('jobId', isEqualTo: job)
+        .snapshots();
   }
 
   void updateJob(

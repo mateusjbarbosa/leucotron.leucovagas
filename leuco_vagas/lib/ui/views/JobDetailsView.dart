@@ -115,7 +115,7 @@ class _JobDetailsViewState extends State<JobDetailsView> {
               ),
             ),
             StreamBuilder(
-              stream: _api.streamCandidates(),
+              stream: _api.streamCandidates(_job.id),
               initialData: _candidates,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
