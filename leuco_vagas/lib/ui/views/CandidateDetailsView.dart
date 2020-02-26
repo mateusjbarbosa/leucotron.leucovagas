@@ -115,7 +115,6 @@ class _CandidateDetailsViewState extends State<CandidateDetailsView> {
               physics: NeverScrollableScrollPhysics(),
               itemCount: _candidate.experience.length,
               itemBuilder: (_, i) {
-                print(_candidate.experience[i]);
                 return ListTile(
                   title: Text(
                     _candidate.experience[i]['company'],
