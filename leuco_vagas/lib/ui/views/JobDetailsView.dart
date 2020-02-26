@@ -123,6 +123,7 @@ class _JobDetailsViewState extends State<JobDetailsView> {
 
                   return ListView.builder(
                     shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: _candidates.length,
                     itemBuilder: (context, i) => ListTile(
                       title: Text(
