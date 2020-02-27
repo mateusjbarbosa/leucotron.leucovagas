@@ -75,8 +75,9 @@ class _UpdateJobViewState extends State<UpdateJobView> {
             children: <Widget>[
               BuildTextField('Nome da vaga', _nameController),
               BuildTextField('Cargo', _roleController),
-              BuildTextField('Requisitos', _requirementsController),
-              BuildTextField('Habilidades', _skillsController),
+              BuildTextField(
+                  'Requisitos | separe por ,', _requirementsController),
+              BuildTextField('Habilidades | separe por ,', _skillsController),
             ],
           ),
         ),
@@ -84,6 +85,7 @@ class _UpdateJobViewState extends State<UpdateJobView> {
       floatingActionButton: FloatingActionButton(
         onPressed: _updateJob,
         child: Icon(Icons.save),
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0.0,
       ),
     );
