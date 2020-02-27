@@ -58,8 +58,9 @@ class _CreateJobViewState extends State<CreateJobView> {
             children: <Widget>[
               BuildTextField('Nome da vaga', _nameController),
               BuildTextField('Cargo', _roleController),
-              BuildTextField('Requisitos', _requirementsController),
-              BuildTextField('Habilidades', _skillsController),
+              BuildTextField(
+                  'Requisitos | separe por ,', _requirementsController),
+              BuildTextField('Habilidades | separe por ,', _skillsController),
             ],
           ),
         ),

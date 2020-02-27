@@ -434,7 +434,7 @@ class _CreateCandidateViewState extends State<CreateCandidateView> {
                   ),
                 ),
               ),
-              BuildTextField('Habilidades', _skillsController),
+              BuildTextField('Habilidades | separe por ,', _skillsController),
               SizedBox(
                 height: 20.0,
               )
