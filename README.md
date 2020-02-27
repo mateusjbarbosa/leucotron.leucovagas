@@ -7,7 +7,7 @@ O Leuco Vagas consiste em ser um aplicativo para o setor de Recursos Humanos no 
 Para desenvolvimento do Leuco Vagas foi utilizada a biblioteca Flutter da Google (https://flutter.dev/) em sua versão *v1.12.13+hotfix.8-stable*.
 A aplicação está estruturada para ser executada em dispositivos *Android 7.0+*.
 
-**Caso o app não inicie, dê o comando** <pre><code>flutter pub get</code></pre> **no terminal**
+**Caso o app não inicie, dê o comando abaixo no terminal** <pre><code>flutter pub get</code></pre> 
 
 # Hierarquia do app
 
