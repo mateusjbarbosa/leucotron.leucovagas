@@ -123,85 +123,101 @@ class _JobDetailsViewState extends State<JobDetailsView> {
                       .map((doc) => Candidate.fromMap(doc.data, doc.documentID))
                       .toList();
 
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: _candidates.length,
-                    itemBuilder: (context, i) => Dismissible(
-                      key: Key(DateTime.now().toString()),
-                      direction: DismissDirection.horizontal,
-                      onDismissed: (d) {
-                        if (d == DismissDirection.startToEnd) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      UpdateCandidateView(_candidates[i])));
-                        } else {
-                          Candidate candidateTemp = _candidates[i];
-
-                          _api.deleteCandidate(_candidates[i].id);
-
-                          final snackbar = SnackBar(
-                              content: Text("Candidato excluído com sucesso!"),
-                              action: SnackBarAction(
-                                  label: "Desfazer",
-                                  textColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  onPressed: () {
-                                    setState(() {
-                                      _api.reAddCandidate(candidateTemp);
-                                    });
-                                  }),
-                              backgroundColor: Theme.of(context).primaryColor,
-                              elevation: 0.0,
-                              duration: Duration(seconds: 10));
-
-                          Scaffold.of(context).showSnackBar(snackbar);
-                        }
-                      },
-                      background: Container(
-                        color: Theme.of(context).primaryColor,
-                        padding: EdgeInsets.only(left: 18),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Icon(Icons.edit, color: Colors.white)
-                            ]),
-                      ),
-                      secondaryBackground: Container(
-                        color: Theme.of(context).primaryColor,
-                        padding: EdgeInsets.only(right: 18),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Icon(Icons.delete, color: Colors.white)
-                            ]),
-                      ),
-                      child: ListTile(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                CandidateDetailsView(_candidates[i]),
-                          ),
-                        ),
-                        title: Text(
-                          _candidates[i].name,
+                  if (_candidates.isEmpty) {
+                    return Container(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 50.0),
+                        child: Text(
+                          'Não há candidatos!'.toUpperCase(),
                           style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
                         ),
-                        subtitle: Text(
-                          _candidates[i].course,
-                          style: TextStyle(
-                            fontSize: 12.0,
+                      ),
+                    );
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: _candidates.length,
+                      itemBuilder: (context, i) => Dismissible(
+                        key: Key(DateTime.now().toString()),
+                        direction: DismissDirection.horizontal,
+                        onDismissed: (d) {
+                          if (d == DismissDirection.startToEnd) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        UpdateCandidateView(_candidates[i])));
+                          } else {
+                            Candidate candidateTemp = _candidates[i];
+
+                            _api.deleteCandidate(_candidates[i].id);
+
+                            final snackbar = SnackBar(
+                                content:
+                                    Text("Candidato excluído com sucesso!"),
+                                action: SnackBarAction(
+                                    label: "Desfazer",
+                                    textColor: Theme.of(context)
+                                        .scaffoldBackgroundColor,
+                                    onPressed: () {
+                                      setState(() {
+                                        _api.reAddCandidate(candidateTemp);
+                                      });
+                                    }),
+                                backgroundColor: Theme.of(context).primaryColor,
+                                elevation: 0.0,
+                                duration: Duration(seconds: 10));
+
+                            Scaffold.of(context).showSnackBar(snackbar);
+                          }
+                        },
+                        background: Container(
+                          color: Theme.of(context).primaryColor,
+                          padding: EdgeInsets.only(left: 18),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Icon(Icons.edit, color: Colors.white)
+                              ]),
+                        ),
+                        secondaryBackground: Container(
+                          color: Theme.of(context).primaryColor,
+                          padding: EdgeInsets.only(right: 18),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Icon(Icons.delete, color: Colors.white)
+                              ]),
+                        ),
+                        child: ListTile(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CandidateDetailsView(_candidates[i]),
+                            ),
+                          ),
+                          title: Text(
+                            _candidates[i].name,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            _candidates[i].course,
+                            style: TextStyle(
+                              fontSize: 12.0,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),
