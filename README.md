@@ -34,7 +34,11 @@ Desenvolver um aplicativo capaz de armazenar informações curriculares de um ca
 - Desenvolvido em Flutter.
   - Compatível com Android.
 - Armazenamento no Firebase.
-- CRUD realizado.
+- CRUD de candidatos realizado.
+
+# Extra
+
+- CRUD de vagas de emprego.
 
 # Não foi concluído a tempo
 - Pesquisa dos dados
